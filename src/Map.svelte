@@ -8,7 +8,7 @@
     color: "#FFFFFF",
     projection: "mercator",
     backgroundAlpha: 1,
-    backgroundColor: "rgba(80,80,80,1)",
+    backgroundColor: "rgba(30,30,30,1)",
     dataProvider: {
       map: "worldLow",
       getAreasFromMap: true,
@@ -78,8 +78,8 @@
       verticalPadding: 15
     },
     areasSettings: {
-      color: "rgba(100,100,100,1)",
-      outlineColor: "rgba(80,80,80,1)",
+      color: "rgba(50,50,50,1)",
+      outlineColor: "rgba(90,90,90,1)",
       rollOverOutlineColor: "rgba(80,80,80,1)",
       rollOverBrightness: 20,
       selectedBrightness: 20,
@@ -109,7 +109,8 @@
       panControlEnabled: false,
       right: 25,
       bottom: 35,
-      minZoomLevel: 0.25,
+      minZoomLevel: 1,
+      maxZoomLevel: 6,
       gridHeight: 100,
       gridAlpha: 0.1,
       gridBackgroundAlpha: 0,
@@ -118,6 +119,12 @@
       buttonCornerRadius: 2
     }
   });
+
+  setTimeout(() => {
+    try {
+      map.zoomToLongLat(3, 140, -20);
+    } catch (e) {}
+  }, 1000);
 
   $: {
     map.clearLabels();

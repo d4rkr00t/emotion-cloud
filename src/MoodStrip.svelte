@@ -74,7 +74,7 @@
           style={'background-color: ' + buildColor(emotionToColor[i])}>
           <div class="mood-colors-item-name">{name}</div>
           <div>
-             {(((mapData.globalEmotion.emotions[i] || 0) / mapData.globalEmotion.total) * 100).toPrecision(2)}%
+             {Math.round(((mapData.globalEmotion.emotions[i] || 0) / mapData.globalEmotion.total) * 100)}%
           </div>
         </div>
       {/each}
