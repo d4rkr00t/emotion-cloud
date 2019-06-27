@@ -11,6 +11,8 @@ var firebaseConfig = {
   appId: '1:181912515521:web:6038d27a09605b3f'
 };
 
+const dbCollection = 'emotions'; // Set to emotions-prod for real data
+
 const app = firebase.initializeApp(firebaseConfig);
 
 export const initializeDb = () => {
@@ -29,7 +31,7 @@ export const initializeDb = () => {
 
         const getEmotionsQuery = firebase
           .firestore(app)
-          .collection('emotions')
+          .collection(dbCollection)
           .where('created', '>', today);
 
         getEmotionsQuery.onSnapshot(snapshot => {
@@ -61,7 +63,7 @@ export const subscribeToEmotions = cb => {
 
   const getEmotionsQuery = firebase
     .firestore(app)
-    .collection('emotions')
+    .collection(dbCollection)
     .where('created', '>', today);
 
   getEmotionsQuery.onSnapshot(snapshot => {
@@ -85,5 +87,5 @@ export const subscribeToEmotions = cb => {
 export const addEmotion = data =>
   firebase
     .firestore()
-    .collection('emotions')
+    .collection(dbCollection)
     .add(data);
