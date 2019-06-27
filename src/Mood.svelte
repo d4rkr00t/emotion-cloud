@@ -10,6 +10,17 @@
   
   const emotionSize = '24px'
 
+  let selectedEmotion = { component: Joy };
+
+  const emotions = [
+    { name: 'Love',   component: Love   },
+    { name: 'Excited', component: Excited },
+    { name: 'Joy',  component: Joy  },
+    { name: 'Sad',  component: Sad  },
+    { name: 'Fear',  component: Fear  },
+    { name: 'Angry',  component: Angry  },
+  ];
+
   let moodPickerOpen = false;
   function toggleMoodPicker() {
     moodPickerOpen = !moodPickerOpen;
@@ -17,6 +28,8 @@
 
   function handleMoodSelection(event, emotion) {
     console.log(`You picked: ${emotion}`);
+    selectedEmotion = emotions.find(emo => emo.name === emotion);
+    moodPickerOpen = false;
   }
 
 </script>
@@ -34,19 +47,26 @@
   p {
     margin: 0;
   }
+
+  .emotion-wrapper button, .mood-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 </style>
 
 <div class="mood-wrapper">
   {#if moodPickerOpen}
-    <div transition:slide="{{ delay: 250, duration: 300 }}">
-      <button on:click="{(e) => handleMoodSelection(e, 'love')}"><Love width={emotionSize} height={emotionSize} /></button>
-      <button on:click="{(e) => handleMoodSelection(e, 'excited')}"><Excited width={emotionSize} height={emotionSize} /></button>
-      <button on:click="{(e) => handleMoodSelection(e, 'joy')}"><Joy width={emotionSize} height={emotionSize} /></button>
-      <button on:click="{(e) => handleMoodSelection(e, 'sad')}"><Sad width={emotionSize} height={emotionSize} /></button>
-      <button on:click="{(e) => handleMoodSelection(e, 'fear')}"><Fear width={emotionSize} height={emotionSize} /></button>
-      <button on:click="{(e) => handleMoodSelection(e, 'angry')}"><Angry width={emotionSize} height={emotionSize} /></button>
+    <div class="emotion-wrapper" transition:slide="{{ delay: 250, duration: 300 }}">
+      {#each emotions as emotion}
+        <button title={emotion.name} on:click="{(e) => handleMoodSelection(e, emotion.name)}">
+          <svelte:component this={emotion.component} width={emotionSize} height={emotionSize} />
+        </button>  
+      {/each}
     </div>
   {/if}
   
-  <button on:click={toggleMoodPicker}>Pick Mood</button>
+  <button class="mood-toggle" on:click={toggleMoodPicker}>
+    <svelte:component this={selectedEmotion.component} width="34px" height="34px" />
+  </button>
 </div>
