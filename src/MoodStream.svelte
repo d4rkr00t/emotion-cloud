@@ -58,6 +58,7 @@
     bottom: 0;
     right: 0;
     pointer-events: none;
+    overflow: hidden;
   }
 
   .emotion {
