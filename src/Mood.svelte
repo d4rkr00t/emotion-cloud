@@ -7,7 +7,7 @@
   import Sad from "./emotions/Sad.svelte";
   import Fear from "./emotions/Fear.svelte";
   import Angry from "./emotions/Angry.svelte";
-  import { addEmotion } from "./db.js";
+  import { addEmotion, currentTimestamp } from "./db.js";
   import { determineLocation } from "./location.js";
 
   const emotionSize = "24px";
@@ -39,10 +39,18 @@
   }
 
   function handleMoodSelection(event, emotionId) {
+    if (!officeLocation) {
+      // TODO make this not suck
+      return;
+    }
     console.log(`You picked: ${emotionId}`);
     selectedEmotion = emotions.find(emo => emo.id === emotionId);
     moodPickerOpen = false;
-    addEmotion({ emotion: emotionId, location: officeLocation.id });
+    addEmotion({
+      emotion: emotionId,
+      location: officeLocation.id,
+      created: currentTimestamp()
+    });
   }
 </script>
 
