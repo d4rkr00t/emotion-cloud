@@ -2,6 +2,7 @@
   import Map from "./Map.svelte";
   import Mood from "./Mood.svelte";
   import MoodStrip from "./MoodStrip.svelte";
+  import MoodStream from "./MoodStream.svelte";
   import { store } from "./store.js";
 </script>
 
@@ -18,5 +19,6 @@
 <div class="app">
   <MoodStrip mapData={$store} />
   <Map mapData={$store} />
+  <MoodStream data={$store} />
   <Mood />
 </div>
