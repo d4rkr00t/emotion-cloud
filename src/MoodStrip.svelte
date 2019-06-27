@@ -46,6 +46,16 @@
     flex-grow: 1;
     padding: 18px;
     background: red;
+    color: #333;
+    display: flex;
+  }
+
+  .mood-colors-item.fear {
+    color: #fff;
+  }
+
+  .mood-colors-item .mood-colors-item-name {
+    flex-grow: 1;
   }
 </style>
 
@@ -56,13 +66,16 @@
 
 {#if isLegendVisible}
   <div class="mood-legend" on:click={toggleLegend}>
-    <h2>Colors:</h2>
+    <h2>Global Mood:</h2>
     <div class="mood-colors-list">
       {#each emotionNames as name, i}
         <div
-          class="mood-colors-item"
+          class={'mood-colors-item ' + name.toLowerCase()}
           style={'background-color: ' + buildColor(emotionToColor[i])}>
-           {name}
+          <div class="mood-colors-item-name">{name}</div>
+          <div>
+             {((mapData.globalEmotion.emotions[i] || 0) / mapData.globalEmotion.total) * 100}%
+          </div>
         </div>
       {/each}
     </div>
