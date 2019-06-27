@@ -50,6 +50,12 @@ export const initializeDb = () => {
   );
 };
 
+/**
+ * data: {
+ *  emotion: <emotion-id>
+ *  location: <location-id>
+ * }
+ */
 export const addEmotion = data =>
   firebase
     .firestore()

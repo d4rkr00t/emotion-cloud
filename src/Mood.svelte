@@ -13,12 +13,12 @@
   let selectedEmotion = { component: Joy };
 
   const emotions = [
-    { name: 'Love',   component: Love   },
-    { name: 'Excited', component: Excited },
-    { name: 'Joy',  component: Joy  },
-    { name: 'Sad',  component: Sad  },
-    { name: 'Fear',  component: Fear  },
-    { name: 'Angry',  component: Angry  },
+    { id: 3, name: 'Love',   component: Love   },
+    { id: 2, name: 'Excited', component: Excited },
+    { id: 1, name: 'Joy',  component: Joy  },
+    { id: 6, name: 'Sad',  component: Sad  },
+    { id: 5, name: 'Fear',  component: Fear  },
+    { id: 4, name: 'Angry',  component: Angry  },
   ];
 
   let moodPickerOpen = false;
@@ -26,9 +26,9 @@
     moodPickerOpen = !moodPickerOpen;
   }
 
-  function handleMoodSelection(event, emotion) {
-    console.log(`You picked: ${emotion}`);
-    selectedEmotion = emotions.find(emo => emo.name === emotion);
+  function handleMoodSelection(event, emotionId) {
+    console.log(`You picked: ${emotionId}`);
+    selectedEmotion = emotions.find(emo => emo.id === emotionId);
     moodPickerOpen = false;
   }
 
@@ -59,7 +59,7 @@
   {#if moodPickerOpen}
     <div class="emotion-wrapper" transition:slide="{{ delay: 250, duration: 300 }}">
       {#each emotions as emotion}
-        <button title={emotion.name} on:click="{(e) => handleMoodSelection(e, emotion.name)}">
+        <button title={emotion.name} on:click="{(e) => handleMoodSelection(e, emotion.id)}">
           <svelte:component this={emotion.component} width={emotionSize} height={emotionSize} />
         </button>  
       {/each}
