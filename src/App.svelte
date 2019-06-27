@@ -1,6 +1,4 @@
 <script>
-  import images from "./data/map-images.js";
-
   export let name;
 
   AmCharts.makeChart("map", {
