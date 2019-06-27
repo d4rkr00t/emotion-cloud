@@ -1,21 +1,36 @@
 <script>
   import { slide } from "svelte/transition";
 
+  import Flag from "./Flag.svelte";
+  import GetLocation from "./emotions/GetLocation.svelte";
   import Love from "./emotions/Love.svelte";
   import Excited from "./emotions/Excited.svelte";
   import Joy from "./emotions/Joy.svelte";
   import Sad from "./emotions/Sad.svelte";
   import Fear from "./emotions/Fear.svelte";
   import Angry from "./emotions/Angry.svelte";
+
   import { addEmotion, currentTimestamp } from "./db.js";
   import { determineLocation } from "./location.js";
 
   const emotionSize = "24px";
 
-  let officeLocation;
-  function getOfficeLocation(pos) {
-    const loc = determineLocation(pos.coords);
-    officeLocation = loc;
+  const cachedOffice = window.localStorage.getItem("emotion-cloud.office");
+  let officeLocation = (cachedOffice && JSON.parse(cachedOffice)) || undefined;
+
+  function handleLocation() {
+    if (officeLocation) {
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(geolocation => {
+      const location = determineLocation(geolocation.coords);
+      window.localStorage.setItem(
+        "emotion-cloud.office",
+        JSON.stringify(location)
+      );
+      officeLocation = location;
+    });
   }
 
   let selectedEmotion = { component: Joy };
@@ -64,15 +79,27 @@
     padding: 5px 8px;
   }
 
-  p {
-    margin: 0;
-  }
-
   .emotion-wrapper button,
-  .mood-toggle {
+  .mood-toggle,
+  button {
     background: none;
     border: none;
     cursor: pointer;
+  }
+
+  .base-picker {
+    position: relative;
+  }
+
+  .flag-wrapper {
+    position: absolute;
+    bottom: 9px;
+    left: 25px;
+    border: 1px solid #fff;
+    border-radius: 100%;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
   }
 </style>
 
@@ -94,12 +121,21 @@
     </div>
   {/if}
 
-  <button class="mood-toggle" on:click={toggleMoodPicker}>
-    <svelte:component
-      this={selectedEmotion.component}
-      width="34px"
-      height="34px" />
-  </button>
-
-  {#if officeLocation}{officeLocation.name}{/if}
+  {#if officeLocation}
+    <div class="base-picker">
+      <button class="mood-toggle" on:click={toggleMoodPicker}>
+        <svelte:component
+          this={selectedEmotion.component}
+          width="34px"
+          height="34px" />
+      </button>
+      <span class="flag-wrapper">
+        <Flag locationId={officeLocation.id} />
+      </span>
+    </div>
+  {:else}
+    <button on:click={handleLocation}>
+      <GetLocation width="34px" height="34px" />
+    </button>
+  {/if}
 </div>
