@@ -1,7 +1,7 @@
 const locations = [
   {
-    id: '516b18ae43d11ffad821a01306fcfbb7b1a699a1',
-    name: 'Amsterdam, Netherlands',
+    id: "516b18ae43d11ffad821a01306fcfbb7b1a699a1",
+    name: "Amsterdam, Netherlands",
     box: {
       upperLat: 51.08886,
       upperLon: 3.262424,
@@ -10,8 +10,8 @@ const locations = [
     }
   },
   {
-    id: 'a12a50054f1a55944bb55f7e9f3a183f47ee23b6',
-    name: 'Australia',
+    id: "a12a50054f1a55944bb55f7e9f3a183f47ee23b6",
+    name: "Australia",
     box: {
       upperLat: -34.206115,
       upperLon: 150.570084,
@@ -20,8 +20,8 @@ const locations = [
     }
   },
   {
-    id: 'f32746ce7bfe8c5af880d05befcbb17b0cdb9d83',
-    name: 'San Francisco, United States',
+    id: "f32746ce7bfe8c5af880d05befcbb17b0cdb9d83",
+    name: "San Francisco, United States",
     box: {
       upperLat: 37.558172,
       upperLon: -122.527575,
@@ -30,8 +30,8 @@ const locations = [
     }
   },
   {
-    id: 'd97e538e8a103f8023d27937519b26aa72d60455',
-    name: 'Mountain View, United States',
+    id: "d97e538e8a103f8023d27937519b26aa72d60455",
+    name: "Mountain View, United States",
     box: {
       upperLat: 37.208354,
       upperLon: -122.510009,
@@ -40,8 +40,8 @@ const locations = [
     }
   },
   {
-    id: 'fd6923b3ff11ab7edee1cb1038e3ed69a99e2b6e',
-    name: 'Bengaluru, India',
+    id: "fd6923b3ff11ab7edee1cb1038e3ed69a99e2b6e",
+    name: "Bengaluru, India",
     box: {
       upperLat: 12.818497,
       upperLon: 77.395935,
@@ -50,8 +50,8 @@ const locations = [
     }
   },
   {
-    id: '8b30de8d0026b9a13991ae34e9156dae60320522',
-    name: 'Ankara, Turkey',
+    id: "8b30de8d0026b9a13991ae34e9156dae60320522",
+    name: "Ankara, Turkey",
     box: {
       upperLat: 39.77011,
       upperLon: 32.575053,
@@ -60,8 +60,8 @@ const locations = [
     }
   },
   {
-    id: 'c0f9e76ae87a44d09f4ecc3638893280374d4d9d',
-    name: 'Austin, United States',
+    id: "c0f9e76ae87a44d09f4ecc3638893280374d4d9d",
+    name: "Austin, United States",
     box: {
       upperLat: 30.143344,
       upperLon: -97.986226,
@@ -70,8 +70,8 @@ const locations = [
     }
   },
   {
-    id: 'f346ebea1e75403daab6d606573cee04feb64890',
-    name: 'Boston, United States',
+    id: "f346ebea1e75403daab6d606573cee04feb64890",
+    name: "Boston, United States",
     box: {
       upperLat: 42.229205,
       upperLon: -71.229697,
@@ -80,8 +80,8 @@ const locations = [
     }
   },
   {
-    id: '133286126346044a11684c98194097d0d9e80aaf',
-    name: 'Falls Church, United States',
+    id: "133286126346044a11684c98194097d0d9e80aaf",
+    name: "Falls Church, United States",
     box: {
       upperLat: 38.859142,
       upperLon: -77.143134,
@@ -90,8 +90,8 @@ const locations = [
     }
   },
   {
-    id: '89669a88161843d8f82875bc1ac0bb10a814c15d',
-    name: 'Gdansk, Poland',
+    id: "89669a88161843d8f82875bc1ac0bb10a814c15d",
+    name: "Gdansk, Poland",
     box: {
       upperLat: 54.227824,
       upperLon: 18.340355,
@@ -100,8 +100,8 @@ const locations = [
     }
   },
   {
-    id: 'e301220d593fa1756ae0dfe89a6dba74164a4cb3',
-    name: 'Georgetown, United States',
+    id: "e301220d593fa1756ae0dfe89a6dba74164a4cb3",
+    name: "Georgetown, United States",
     box: {
       upperLat: 38.900068,
       upperLon: -77.081692,
@@ -110,8 +110,8 @@ const locations = [
     }
   },
   {
-    id: 'c4a315a05b9a529c54af2caccc5ae9bb8662059c',
-    name: 'Kuala Lumpur, Malaysia',
+    id: "c4a315a05b9a529c54af2caccc5ae9bb8662059c",
+    name: "Kuala Lumpur, Malaysia",
     box: {
       upperLat: 2.547323,
       upperLon: 100.913415,
@@ -120,8 +120,8 @@ const locations = [
     }
   },
   {
-    id: '5e8d5f3446f5a0aafbd528523c50c7af683e1143',
-    name: 'Lviv, Ukraine',
+    id: "5e8d5f3446f5a0aafbd528523c50c7af683e1143",
+    name: "Lviv, Ukraine",
     box: {
       upperLat: 44.529801,
       upperLon: 22.382927,
@@ -130,8 +130,8 @@ const locations = [
     }
   },
   {
-    id: 'd40655e729700e8c723336383e0b17ccdd947625',
-    name: 'Manila, Philippines',
+    id: "d40655e729700e8c723336383e0b17ccdd947625",
+    name: "Manila, Philippines",
     box: {
       upperLat: 4.609278,
       upperLon: 116.05957,
@@ -140,8 +140,8 @@ const locations = [
     }
   },
   {
-    id: '1f3533226035e0d6f3ac71ddf0d327bc9fc4f178',
-    name: 'New York, United States',
+    id: "1f3533226035e0d6f3ac71ddf0d327bc9fc4f178",
+    name: "New York, United States",
     box: {
       upperLat: 40.615353,
       upperLon: -74.340934,
@@ -150,8 +150,8 @@ const locations = [
     }
   },
   {
-    id: 'a23e3ba4ad7dddafd1c17bffaaae42ec5b7bdf1d',
-    name: 'Porto Alegre, Brazil',
+    id: "a23e3ba4ad7dddafd1c17bffaaae42ec5b7bdf1d",
+    name: "Porto Alegre, Brazil",
     box: {
       upperLat: -30.413437,
       upperLon: -51.784465,
@@ -160,8 +160,8 @@ const locations = [
     }
   },
   {
-    id: '2f1e3b97386fe65984f83bedd6a0d22b8d02cd34',
-    name: 'Sao Paulo, Brazil',
+    id: "2f1e3b97386fe65984f83bedd6a0d22b8d02cd34",
+    name: "Sao Paulo, Brazil",
     box: {
       upperLat: -23.838839,
       upperLon: -46.991272,
@@ -170,8 +170,8 @@ const locations = [
     }
   },
   {
-    id: 'b3b30a080f4801c52a9b2ae8fe1a11c044a8655c',
-    name: 'Yokohama, Japan',
+    id: "b3b30a080f4801c52a9b2ae8fe1a11c044a8655c",
+    name: "Yokohama, Japan",
     box: {
       upperLat: 30.088999,
       upperLon: 128.206329,
@@ -185,7 +185,6 @@ const homeOffice = {
   id: "64c10e153b7e2d9b40cee7e9f7d5ca1865eeb01a",
   name: "Home Office"
 };
-
 
 function between(l, r) {
   const lower = Math.min(l, r);

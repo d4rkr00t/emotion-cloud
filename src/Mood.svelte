@@ -80,7 +80,7 @@
   {#if moodPickerOpen}
     <div
       class="emotion-wrapper"
-      transition:slide={{ delay: 250, duration: 300 }}>
+      transition:slide={{ delay: 10, duration: 300 }}>
       {#each emotions as emotion}
         <button
           title={emotion.name}

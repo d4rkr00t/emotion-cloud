@@ -53,6 +53,21 @@
           id: "US",
           title: "United States",
           color: "rgba(129,129,129,1)"
+        },
+        {
+          id: "BR",
+          title: "Brazil",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "MY",
+          title: "Malaysia",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "PL",
+          title: "Poland",
+          color: "rgba(75,216,181,0.8)"
         }
       ]
     },
@@ -106,7 +121,7 @@
 
   $: {
     map.clearLabels();
-    mapData.offices.forEach(office => {
+    Object.values(mapData.offices).forEach(office => {
       let area = map.getObjectById(office.id);
       area.color = office.color;
       area.title = office.label;
