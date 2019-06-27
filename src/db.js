@@ -23,13 +23,22 @@ export const initializeDb = () => {
       // })
       .then(() => {
         console.log('Connected to firestore!');
-        const getEmotionsQuery = firebase.firestore(app).collection('emotions');
+
+        const { Timestamp } = firebase.firestore;
+        const today = new Timestamp(new Date().setHours(0, 0, 0, 0) / 1000, 0);
+
+        const getEmotionsQuery = firebase
+          .firestore(app)
+          .collection('emotions')
+          .where('created', '>', today);
 
         getEmotionsQuery.onSnapshot(snapshot => {
           if (snapshot.size) {
+            console.log(snapshot.docs.map(doc => doc.data()));
+
             snapshot.docChanges().forEach(change => {
               if (change.type === 'added' || change.type === 'modified') {
-                console.log(change.doc.data());
+                console.log(change.type, change.doc.data());
               }
             });
           }
