@@ -7,6 +7,7 @@
   import Sad from './emotions/Sad.svelte';
   import Fear from './emotions/Fear.svelte';
   import Angry from './emotions/Angry.svelte';
+  import  { addEmotion } from './db.js';
   
   const emotionSize = '24px'
 
@@ -30,6 +31,7 @@
     console.log(`You picked: ${emotionId}`);
     selectedEmotion = emotions.find(emo => emo.id === emotionId);
     moodPickerOpen = false;
+    addEmotion({ emotion: emotionId })
   }
 
 </script>
