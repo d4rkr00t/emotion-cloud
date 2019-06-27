@@ -1,5 +1,5 @@
 <script>
-  export let mapData = [];
+  export let mapData;
   let map = AmCharts.makeChart("map", {
     type: "map",
     pathToImages: "http://www.amcharts.com/lib/3/images/",
@@ -132,4 +132,4 @@
   }
 </script>
 
-<div id="map" style="width: 100vw; height: 100vh;" />
+<div id="map" style="width: 100%; height: 100%;" />

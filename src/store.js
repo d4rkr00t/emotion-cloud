@@ -52,11 +52,7 @@ function getColorForEmotions(emotions, total) {
   },${emotionToColor[mappedEmotions[0]][2]},${mappedEmotions[1]})`;
 }
 
-function processEmotion(store, emotion) {
-  let recentEmotions = store.recentEmotions.slice(1);
-  recentEmotions.push(emotion);
-
-  let offices = store.offices;
+function processEmotion(offices, emotion) {
   let office = offices[locations[emotion.location]];
 
   if (office) {
@@ -67,18 +63,62 @@ function processEmotion(store, emotion) {
     office.color = getColorForEmotions(office.emotions, office.totalEmotions);
   }
 
-  return { recentEmotions, offices };
+  return offices;
 }
 
-export const store = readable({ offices, recentEmotions: [] }, function start(
-  set
-) {
-  let val = get(store);
-  subscribeToEmotions(emotions => {
-    let newState = emotions.reduce(
-      (acc, emotion) => processEmotion(acc, emotion),
-      val
+function processGlobalEmotion(globalEmotion, emotion) {
+  function buildGradient(total, emotions) {
+    // linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+
+    return (
+      "linear-gradient(90deg, " +
+      Object.entries(emotions)
+        .map(([id, val]) => [id, val / total])
+        .sort((a, b) => b[1] - a[1])
+        .reduce(
+          (acc, [id, val]) => {
+            return {
+              total: acc.total + val,
+              gradient: acc.gradient.concat(
+                `rgba(${emotionToColor[id][0]}, ${emotionToColor[id][1]}, ${
+                  emotionToColor[id][2]
+                }, 1) ${acc.total * 100}%`
+              )
+            };
+          },
+          { total: 0, gradient: [] }
+        )
+        .gradient.join(", ") +
+      ")"
     );
-    set(newState);
-  });
-});
+  }
+  globalEmotion.total += 1;
+  globalEmotion.emotions[emotion.emotion] =
+    (globalEmotion.emotions[emotion.emotion] || 0) + 1;
+  globalEmotion.gradient = buildGradient(
+    globalEmotion.total,
+    globalEmotion.emotions
+  );
+  return globalEmotion;
+}
+
+export const store = readable(
+  { offices, recentEmotions: [], globalEmotion: { total: 0, emotions: {} } },
+  function start(set) {
+    let val = get(store);
+    subscribeToEmotions(emotions => {
+      let newState = {
+        recentEmotions: store.recentEmotions,
+        offices: emotions.reduce(
+          (acc, emotion) => processEmotion(acc, emotion),
+          val.offices
+        ),
+        globalEmotion: emotions.reduce(
+          (acc, emotion) => processGlobalEmotion(acc, emotion),
+          val.globalEmotion
+        )
+      };
+      set(newState);
+    });
+  }
+);
