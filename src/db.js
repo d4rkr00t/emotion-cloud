@@ -11,8 +11,9 @@ var firebaseConfig = {
   appId: '1:181912515521:web:6038d27a09605b3f'
 };
 
+const app = firebase.initializeApp(firebaseConfig);
+
 export const initializeDb = () => {
-  const app = firebase.initializeApp(firebaseConfig);
   return (
     firebase
       .firestore(app)
@@ -39,3 +40,9 @@ export const initializeDb = () => {
       })
   );
 };
+
+export const addEmotion = data =>
+  firebase
+    .firestore()
+    .collection('emotions')
+    .add(data);
