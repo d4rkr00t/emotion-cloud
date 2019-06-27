@@ -46,11 +46,26 @@
 
   let moodPickerOpen = false;
   function toggleMoodPicker() {
-    if (!officeLocation && moodPickerOpen === false && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(getOfficeLocation);
+    const lock = window.localStorage.getItem('emotion-cloud.flood-lock');
+    if (validateLock(lock)) {
+      return;
     }
 
     moodPickerOpen = !moodPickerOpen;
+  }
+
+
+  function setLock() {
+    window.localStorage.setItem('emotion-cloud.flood-lock', Date.now());
+  }
+
+  function validateLock(lockTime) {
+    if (!lockTime || (Date.now() - lockTime) / 60 >= 1000) {
+      window.localStorage.removeItem('emotion-cloud.flood-lock');
+      return false;
+    }
+
+    return true;
   }
 
   function handleMoodSelection(event, emotionId) {
@@ -66,6 +81,8 @@
       location: officeLocation.id,
       created: currentTimestamp()
     });
+
+    setLock();
   }
 </script>
 
@@ -111,6 +128,7 @@
       {#each emotions as emotion}
         <button
           title={emotion.name}
+          class="emotion"
           on:click={e => handleMoodSelection(e, emotion.id)}>
           <svelte:component
             this={emotion.component}
@@ -126,6 +144,7 @@
       <button class="mood-toggle" on:click={toggleMoodPicker}>
         <svelte:component
           this={selectedEmotion.component}
+          animate={false}
           width="34px"
           height="34px" />
       </button>

@@ -1,9 +1,13 @@
 <script>
 	export let width;
 	export let height;
+	export let animate = true;
+
+	import SvgWrapper from './Svg.svelte';
 </script>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width={width} height={height}>
+
+<SvgWrapper width={width} height={height} animate={animate}>
+<svg  style="--svgwidth: {width}; --svgheight: {height}; enable-background:new 0 0 512 512;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" xml:space="preserve" width={width} height={height}>
 <g transform="matrix(1.25 0 0 -1.25 0 45)">
 	<g>
 		<g>
@@ -52,3 +56,4 @@
 <g>
 </g>
 </svg>
+</SvgWrapper>
