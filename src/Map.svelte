@@ -1,5 +1,6 @@
 <script>
-  AmCharts.makeChart("map", {
+  export let colors = [];
+  let map = AmCharts.makeChart("map", {
     type: "map",
     pathToImages: "http://www.amcharts.com/lib/3/images/",
     addClassNames: true,
@@ -16,42 +17,42 @@
         {
           id: "AU",
           title: "Australia",
-          color: "rgba(75,216,181,0.8)"
+          color: "rgba(129,129,129,1)"
         },
         {
           id: "IN",
           title: "India",
-          color: "rgba(75,216,181,0.8)"
+          color: "rgba(129,129,129,1)"
         },
         {
           id: "JP",
           title: "Japan",
-          color: "rgba(75,216,181,0.8)"
+          color: "rgba(129,129,129,1)"
         },
         {
           id: "NL",
           title: "Netherlands",
-          color: "rgba(75,216,181,0.8)"
+          color: "rgba(129,129,129,1)"
         },
         {
           id: "PH",
           title: "Philippines",
-          color: "rgba(75,216,181,0.8)"
+          color: "rgba(129,129,129,1)"
         },
         {
           id: "TR",
           title: "Turkey",
-          color: "rgba(75,216,181,0.8)"
+          color: "rgba(129,129,129,1)"
         },
         {
           id: "UA",
           title: "Ukraine",
-          color: "rgba(75,216,181,0.8)"
+          color: "rgba(129,129,129,1)"
         },
         {
           id: "US",
           title: "United States",
-          color: "rgba(75,216,181,0.8)"
+          color: "rgba(129,129,129,1)"
         }
       ]
     },
@@ -62,7 +63,7 @@
       verticalPadding: 15
     },
     areasSettings: {
-      color: "rgba(129,129,129,1)",
+      color: "rgba(100,100,100,1)",
       outlineColor: "rgba(80,80,80,1)",
       rollOverOutlineColor: "rgba(80,80,80,1)",
       rollOverBrightness: 20,
@@ -102,6 +103,16 @@
       buttonCornerRadius: 2
     }
   });
+
+  $: {
+    colors.forEach(color => {
+      let area = map.getObjectById(color.id);
+      area.color = color.color;
+      if (area.validate) {
+        area.validate();
+      }
+    });
+  }
 </script>
 
 <div id="map" style="width: 100vw; height: 100vh;" />
