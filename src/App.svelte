@@ -14,8 +14,50 @@
     backgroundColor: "rgba(80,80,80,1)",
     dataProvider: {
       map: "worldLow",
-      getAreasFromMap: false,
-      images
+      getAreasFromMap: true,
+      images: [],
+      areas: [
+        {
+          id: "AU",
+          title: "Australia",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "IN",
+          title: "India",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "JP",
+          title: "Japan",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "NL",
+          title: "Netherlands",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "PH",
+          title: "Philippines",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "TR",
+          title: "Turkey",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "UA",
+          title: "Ukraine",
+          color: "rgba(75,216,181,0.8)"
+        },
+        {
+          id: "US",
+          title: "United States",
+          color: "rgba(75,216,181,0.8)"
+        }
+      ]
     },
     balloon: {
       horizontalPadding: 15,
@@ -31,9 +73,7 @@
       selectedBrightness: 20,
       selectable: true,
       unlistedAreasAlpha: 0,
-      unlistedAreasOutlineAlpha: 0,
-      alpha: 0,
-      outlineAlpha: 0
+      unlistedAreasOutlineAlpha: 0
     },
     imagesSettings: {
       alpha: 1,
