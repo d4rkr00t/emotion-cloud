@@ -5,6 +5,6 @@
 </script>
 
 <div style="position: relative;">
-  <Mood />
   <Map colors={$store} />
+  <Mood />
 </div>
