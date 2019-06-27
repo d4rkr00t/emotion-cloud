@@ -1,5 +1,5 @@
 <script>
-  export let colors = [];
+  export let mapData = [];
   let map = AmCharts.makeChart("map", {
     type: "map",
     pathToImages: "http://www.amcharts.com/lib/3/images/",
@@ -105,9 +105,11 @@
   });
 
   $: {
-    colors.forEach(color => {
-      let area = map.getObjectById(color.id);
-      area.color = color.color;
+    map.clearLabels();
+    mapData.offices.forEach(office => {
+      let area = map.getObjectById(office.id);
+      area.color = office.color;
+      area.title = office.label;
       if (area.validate) {
         area.validate();
       }
