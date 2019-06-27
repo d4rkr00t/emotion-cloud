@@ -1,6 +1,12 @@
 <script>
+  import { emotionNames, emotionToColor, buildColor } from "./store.js";
   export let mapData;
   let gradient = "";
+  let isLegendVisible = false;
+
+  function toggleLegend() {
+    isLegendVisible = !isLegendVisible;
+  }
 
   $: {
     gradient = mapData.globalEmotion.gradient;
@@ -13,6 +19,52 @@
     background: transparent;
     opacity: 0.8;
   }
+
+  .mood-legend {
+    position: absolute;
+    top: 29px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    padding: 21px;
+    box-sizing: border-box;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .mood-colors-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mood-colors-item + .mood-colors-item {
+    margin-top: 18px;
+  }
+
+  .mood-colors-item {
+    flex-grow: 1;
+    padding: 18px;
+    background: red;
+  }
 </style>
 
-<div class="mood-strip" style={'background:' + gradient} />
+<div
+  class="mood-strip"
+  style={'background:' + gradient}
+  on:click={toggleLegend} />
+
+{#if isLegendVisible}
+  <div class="mood-legend" on:click={toggleLegend}>
+    <h2>Colors:</h2>
+    <div class="mood-colors-list">
+      {#each emotionNames as name, i}
+        <div
+          class="mood-colors-item"
+          style={'background-color: ' + buildColor(emotionToColor[i])}>
+           {name}
+        </div>
+      {/each}
+    </div>
+  </div>
+{/if}

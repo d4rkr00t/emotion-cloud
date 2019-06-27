@@ -22,7 +22,16 @@ let locations = {
   b3b30a080f4801c52a9b2ae8fe1a11c044a8655c: "JP"
 };
 
-let emotionToColor = [
+export let emotionNames = [
+  "Love",
+  "Excitement",
+  "Happiness",
+  "Sadness",
+  "Fear",
+  "Anger"
+];
+
+export let emotionToColor = [
   [255, 105, 120],
   [85, 214, 190],
   [249, 231, 132],
@@ -30,6 +39,10 @@ let emotionToColor = [
   [20, 20, 20],
   [249, 57, 67]
 ];
+
+export function buildColor(color, opacity = 1) {
+  return `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${opacity})`;
+}
 
 let offices = Object.values(locations).reduce((acc, id) => {
   acc[id] = {
@@ -68,13 +81,13 @@ function processEmotion(offices, emotion) {
 
 function processGlobalEmotion(globalEmotion, emotion) {
   function buildGradient(total, emotions) {
-    // linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-
+    let colors = Object.entries(emotions)
+      .map(([id, val]) => [id, val / total])
+      .sort((a, b) => b[1] - a[1]);
+    let last = colors[colors.length - 1];
     return (
       "linear-gradient(90deg, " +
-      Object.entries(emotions)
-        .map(([id, val]) => [id, val / total])
-        .sort((a, b) => b[1] - a[1])
+      colors
         .reduce(
           (acc, [id, val]) => {
             return {
@@ -89,7 +102,9 @@ function processGlobalEmotion(globalEmotion, emotion) {
           { total: 0, gradient: [] }
         )
         .gradient.join(", ") +
-      ")"
+      `, rgba(${emotionToColor[last[0]][0]}, ${emotionToColor[last[0]][1]}, ${
+        emotionToColor[last[0]][2]
+      }, 1) 100%)`
     );
   }
   globalEmotion.total += 1;
