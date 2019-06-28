@@ -19,6 +19,6 @@
 <div class="app">
   <MoodStrip mapData={$store} />
   <Map mapData={$store} />
-  <MoodStream data={$store} />
+  <MoodStream recentEmotions={$store.recentEmotions} />
   <Mood />
 </div>

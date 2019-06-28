@@ -143,12 +143,32 @@ function processGlobalEmotion(globalEmotion, emotion) {
 }
 
 export const store = readable(
-  { offices, recentEmotions: [], globalEmotion: { total: 0, emotions: {} } },
+  {
+    offices,
+    recentEmotions: [],
+    globalEmotion: { total: 0, emotions: {} },
+    initial: true
+  },
   function start(set) {
-    let val = get(store);
     subscribeToEmotions(emotions => {
+      let val = get(store);
+      let recentEmotions = (val.recentEmotions.length > 20
+        ? val.recentEmotions.slice(val.recentEmotions.length - 20)
+        : val.recentEmotions
+      ).concat(
+        emotions.map(e => ({
+          ...e,
+          created: Date.now(),
+          get age() {
+            return (Date.now() - this.created) / 1000;
+          },
+          left: Math.floor(Math.random() * 100),
+          size: Math.floor(Math.random() * 25) + 50
+        }))
+      );
+
       let newState = {
-        recentEmotions: store.recentEmotions,
+        recentEmotions: val.initial ? [] : recentEmotions,
         offices: emotions.reduce(
           (acc, emotion) => processEmotion(acc, emotion),
           val.offices
@@ -156,7 +176,8 @@ export const store = readable(
         globalEmotion: emotions.reduce(
           (acc, emotion) => processGlobalEmotion(acc, emotion),
           val.globalEmotion
-        )
+        ),
+        initial: false
       };
       set(newState);
     });

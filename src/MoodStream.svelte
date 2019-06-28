@@ -6,7 +6,7 @@
   import Fear from "./emotions/Fear.svelte";
   import Angry from "./emotions/Angry.svelte";
 
-  export let data;
+  export let recentEmotions = [];
   const emotions = [
     { id: 0, name: "Love", component: Love },
     { id: 1, name: "Excited", component: Excited },
@@ -16,37 +16,14 @@
     { id: 5, name: "Angry", component: Angry }
   ];
 
-  let components = [];
+  let components = recentEmotions;
 
-  const createRandomMood = () => {
-    const component = emotions[Math.floor(Math.random() * 6)].component;
-    const size = Math.floor(Math.random() * 25) + 50;
-    const left = Math.floor(Math.random() * 100);
-    return {
-      id: `thing-${Math.random() * 10001020}`,
-      created: Date.now(),
-      get age() {
-        return (Date.now() - this.created) / 1000;
-      },
-      size,
-      left,
-      component
-    };
-  };
-
-  const emotion = createRandomMood();
-
-  setTimeout(() => {
-    components.push(emotion);
-  }, 1000);
+  $: {
+    components = recentEmotions;
+  }
 
   setInterval(() => {
-    components = components.filter(component => component.age < 10);
-
-    if (Math.floor(Math.random() * 100) === 1) {
-      const emotion = createRandomMood();
-      components.push(emotion);
-    }
+    components = components.filter(component => component.age < 7);
   }, 10);
 </script>
 
@@ -70,14 +47,14 @@
 </style>
 
 <div id="mood-stream">
-  {#each components as component (component.id)}
+  {#each components as component (component.created)}
     <div
       class="emotion"
       data-age={component.age}
-      style="left: {component.left}%; top: 100%; opacity: {component.age > 3 ? 0 : 1};
-      transform: translate(0, {component.age > 3 ? -160 : 0}vh)">
+      style="left: {component.left}%; top: 100%; opacity: {component.age > 1 ? 0 : 1};
+      transform: translate(0, {component.age > 1 ? -160 : 0}vh)">
       <svelte:component
-        this={component.component}
+        this={emotions[component.emotion].component}
         width={component.size}
         height={component.size} />
     </div>

@@ -46,26 +46,13 @@
 
   let moodPickerOpen = false;
   function toggleMoodPicker() {
-    const lock = window.localStorage.getItem('emotion-cloud.flood-lock');
-    if (validateLock(lock)) {
-      return;
-    }
+    const lock = window.localStorage.getItem("emotion-cloud.flood-lock");
 
     moodPickerOpen = !moodPickerOpen;
   }
 
-
   function setLock() {
-    window.localStorage.setItem('emotion-cloud.flood-lock', Date.now());
-  }
-
-  function validateLock(lockTime) {
-    if (!lockTime || (Date.now() - lockTime) / 60 >= 1000) {
-      window.localStorage.removeItem('emotion-cloud.flood-lock');
-      return false;
-    }
-
-    return true;
+    window.localStorage.setItem("emotion-cloud.flood-lock", Date.now());
   }
 
   function handleMoodSelection(event, emotionId) {

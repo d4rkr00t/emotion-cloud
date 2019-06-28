@@ -50,11 +50,12 @@ export const subscribeToEmotions = cb => {
 
   getEmotionsQuery.onSnapshot(snapshot => {
     if (snapshot.size) {
-      snapshot.docChanges().forEach(change => {
+      let data = snapshot.docChanges().map(change => {
         if (change.type === "added" || change.type === "modified") {
-          cb([change.doc.data()]);
+          return change.doc.data();
         }
       });
+      cb(data);
     }
   });
 };
