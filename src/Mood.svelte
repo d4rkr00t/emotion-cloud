@@ -46,13 +46,7 @@
 
   let moodPickerOpen = false;
   function toggleMoodPicker() {
-    const lock = window.localStorage.getItem("emotion-cloud.flood-lock");
-
     moodPickerOpen = !moodPickerOpen;
-  }
-
-  function setLock() {
-    window.localStorage.setItem("emotion-cloud.flood-lock", Date.now());
   }
 
   function handleMoodSelection(event, emotionId) {
@@ -68,8 +62,6 @@
       location: officeLocation.id,
       created: currentTimestamp()
     });
-
-    setLock();
   }
 </script>
 
