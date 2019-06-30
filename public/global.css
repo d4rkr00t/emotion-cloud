@@ -6,7 +6,7 @@ body {
 }
 
 body {
-  color: #333;
+  color: rgba(30, 30, 30, 1);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
