@@ -1,6 +1,6 @@
-import App from './App.svelte';
-import { initializeDb } from './db';
-import { initializeSw } from './sw';
+import App from "./App.svelte";
+import { initializeDb } from "./db";
+import { initializeSw } from "./sw";
 
 initializeDb();
 initializeSw();

@@ -8,6 +8,14 @@
     isLegendVisible = !isLegendVisible;
   }
 
+  function calcPercentage(emotion, total) {
+    if (total == 0) {
+      return 0;
+    }
+
+    return Math.round((emotion || 0) / total) * 100;
+  }
+
   $: {
     gradient = mapData.globalEmotion.gradient;
   }
@@ -74,7 +82,7 @@
           style={'background-color: ' + buildColor(emotionToColor[i])}>
           <div class="mood-colors-item-name">{name}</div>
           <div>
-             {Math.round(((mapData.globalEmotion.emotions[i] || 0) / mapData.globalEmotion.total) * 100)}%
+             {calcPercentage(mapData.globalEmotion.emotions[i], mapData.globalEmotion.total)}%
           </div>
         </div>
       {/each}

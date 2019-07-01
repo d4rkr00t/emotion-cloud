@@ -20,27 +20,32 @@ importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
  */
 self.__precacheManifest = [
   {
+    "url": "apple-touch-icon.png",
+    "revision": "dd147f18772924e396826747d95990e9"
+  },
+  {
     "url": "bundle.css",
     "revision": "0f1d3de00619b1b39b35e33c39899383"
   },
   {
     "url": "bundle.js",
-    "revision": "e6b48d2057330d59e622b533a9583a80"
+    "revision": "d7dbe1554bb40a521944aea5578060c5"
   },
   {
     "url": "favicon.png",
-    "revision": "c64beab291de80970aa4887a5a1c9135"
+    "revision": "dd147f18772924e396826747d95990e9"
   },
   {
     "url": "global.css",
-    "revision": "e2958002ce69963a65e785dbb6b12562"
+    "revision": "26ddecfe691c0b6df69922f3d4e95a4d"
   },
   {
     "url": "index.html",
-    "revision": "2bd9603a51218179e1361cc3691a7762"
+    "revision": "1c10c59dda782e92734d8f6886a950c0"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.suppressWarnings();
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerRoute(/\.(?:png|jpg|jpeg|svg)$/, workbox.strategies.cacheFirst({ "cacheName":"images", plugins: [] }), 'GET');
+workbox.routing.registerRoute(/^https:\/\/(www.)?amcharts.com\/lib\/3/, workbox.strategies.cacheFirst({ "cacheName":"map", plugins: [] }), 'GET');
