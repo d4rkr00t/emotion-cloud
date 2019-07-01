@@ -1,25 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
-
-// var firebaseConfig = {
-//   apiKey: "AIzaSyC6ou5kaX-inkvsEIs7gzfGb2ReaXLPcTI",
-//   authDomain: "emotion-colud.firebaseapp.com",
-//   databaseURL: "https://emotion-colud.firebaseio.com",
-//   projectId: "emotion-colud",
-//   storageBucket: "",
-//   messagingSenderId: "181912515521",
-//   appId: "1:181912515521:web:6038d27a09605b3f"
-// };
-
-var firebaseConfig = {
-  apiKey: "AIzaSyBnfH5EGq0RbVUO9kpYrVC1HtPBxqCKRN0",
-  authDomain: "emotion-cloud-2.firebaseapp.com",
-  databaseURL: "https://emotion-cloud-2.firebaseio.com",
-  projectId: "emotion-cloud-2",
-  storageBucket: "",
-  messagingSenderId: "654909016142",
-  appId: "1:654909016142:web:2308c395acf9229e"
-};
+import firebaseConfig from "../firebase-config";
 
 const dbCollection = "emotion"; // Set to emotions-prod for real data
 
